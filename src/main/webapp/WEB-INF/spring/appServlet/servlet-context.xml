@@ -8,7 +8,6 @@
 		http://www.springframework.org/schema/context classpath:xsd/spring-context.xsd">
 
     <annotation-driven />
-
     <resources mapping="/resources/**" location="/resources/" />
 
     <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -1,4 +1,7 @@
 package toy.hong.openapi.app.service;
 
-public interface ApiService {
+import org.springframework.stereotype.Service;
+
+@Service
+public class ApiService {
 }
