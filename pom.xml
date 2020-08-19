@@ -101,16 +101,11 @@
             <version>5.1.31</version>
         </dependency>
 
-        <!-- MyBatis -->
+        <!-- Hibernate -->
         <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>3.5.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-            <version>2.0.3</version>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>4.3.10.Final</version>
         </dependency>
 
         <!-- DBCP -->
