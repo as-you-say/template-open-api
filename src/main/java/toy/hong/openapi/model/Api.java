@@ -1,6 +1,7 @@
 package toy.hong.openapi.model;
 
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -18,7 +19,7 @@ public class Api {
     private String id;
 
     // 컬럼
-    @Column(name = "domain")
+    @Column(name = "domain", nullable = false, columnDefinition = "API 도메인", length = 63)
     private String domain;
 
     @Column(name = "name")
