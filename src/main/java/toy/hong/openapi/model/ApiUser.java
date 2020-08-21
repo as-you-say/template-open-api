@@ -13,21 +13,23 @@ import java.util.List;
 @Getter
 @Setter
 public class ApiUser {
+
     //기본키
     @Id
+    @Column(name = "id", nullable = false, length = 50, columnDefinition = "API 사용자 아이디")
     private String id;
 
     // 컬럼
-    @Column(name = "password")
+    @Column(name = "password", nullable = false, length = 60, columnDefinition = "API 사용자 비밀번호")
     private String password;
 
-    @Column(name = "purpose")
+    @Column(name = "purpose", nullable = false, length = 20, columnDefinition = "API 사용목적")
     private String purpose;
 
-    @Column(name = "create_at")
+    @Column(name = "create_at", nullable = false, columnDefinition = "등록일")
     private Date createAt;
 
-    @Column(name = "update_at")
+    @Column(name = "update_at", nullable = false, columnDefinition = "수정일")
     private Date updateAt;
 
     // 조인

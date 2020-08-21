@@ -10,12 +10,14 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class ApiUseHistory {
+
     // 기본키
     @Id
+    @Column(name = "id", nullable = false, length = 32, columnDefinition = "API 사용 내역 아이디")
     private String id;
 
     // 컬럼
-    @Column(name = "call_count")
+    @Column(name = "call_count", nullable = false, columnDefinition = "API 사용 횟수")
     private Integer callCount;
 
     // 조인
@@ -26,4 +28,5 @@ public class ApiUseHistory {
     @ManyToOne
     @JoinColumn(name = "api_id")
     private Api api;
+
 }

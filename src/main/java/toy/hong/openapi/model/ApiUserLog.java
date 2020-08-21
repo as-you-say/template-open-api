@@ -13,16 +13,17 @@ import java.util.Date;
 public class ApiUserLog {
     // 기본키
     @Id
+    @Column(name = "id", nullable = false, length = 32, columnDefinition = "사용 이력 아이디")
     private String id;
 
     // 컬럼
-    @Column(name = "ip")
+    @Column(name = "ip", nullable = false, length = 15, columnDefinition = "접속한 아이피")
     private String ip;
 
-    @Column(name = "message")
+    @Column(name = "message", nullable = false, length = 50, columnDefinition = "사용 이력 내용")
     private String message;
 
-    @Column(name = "create_at")
+    @Column(name = "create_at", nullable = false, columnDefinition = "등록일")
     private Date createAt;
 
     // 조인

@@ -15,19 +15,20 @@ import java.util.List;
 public class ApiUseApply {
     // 기본키
     @Id
+    @Column(name = "id", nullable = false, length = 32, columnDefinition = "API 사용 신청 아이디")
     private String id;
 
     // 컬럼
-    @Column(name = "project_name")
+    @Column(name = "project_name", nullable = false, length = 15, columnDefinition = "API 사용 신청 프로젝트 이름")
     private String projectName;
     
-    @Column(name = "ip")
+    @Column(name = "ip", nullable = false, length = 64, columnDefinition = "API 사용 신청 아이피")
     private String ip;
     
-    @Column(name = "status")
+    @Column(name = "status", nullable = false, length = 5, columnDefinition = "API 사용 신청 상태")
     private Integer status;
     
-    @Column(name = "create_at")
+    @Column(name = "create_at", nullable = false, columnDefinition = "등록일")
     private Date createAt;
 
     // 조인
@@ -41,4 +42,5 @@ public class ApiUseApply {
     
     @OneToMany(mappedBy = "apiUseApply")
     private List<ApiUseHistory> apiUseHistories = new ArrayList<>();
+
 }
