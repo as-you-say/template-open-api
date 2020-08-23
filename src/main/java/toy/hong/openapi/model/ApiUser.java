@@ -45,4 +45,15 @@ public class ApiUser {
     @OneToMany(mappedBy = "apiUser")
     private List<ApiUseApply> apiUseApplies = new ArrayList<>();
 
+    public String[] getSecurityAuthArray(){
+        int authSize = apiUserAuths.size();
+        String[] authArray = new String[authSize];
+
+        for(int i=0; i<authSize; i++){
+            authArray[i] = apiUserAuths.get(i).getApiAuth().getName();
+        }
+
+        return authArray;
+    }
+
 }

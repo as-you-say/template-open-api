@@ -9,11 +9,7 @@ public class ApiSecurityUser extends User {
         super(
             apiUser.getId(),
             apiUser.getPassword(),
-            AuthorityUtils.createAuthorityList(
-                    apiUser.getApiUserAuths()
-                            .stream()
-                            .toArray(String[]::new)
-            )
+            AuthorityUtils.createAuthorityList(apiUser.getSecurityAuthArray())
         );
     }
 }
