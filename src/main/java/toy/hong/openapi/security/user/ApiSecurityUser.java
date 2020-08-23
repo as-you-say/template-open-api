@@ -7,9 +7,9 @@ import toy.hong.openapi.model.ApiUser;
 public class ApiSecurityUser extends User {
     public ApiSecurityUser(ApiUser apiUser) {
         super(
-            apiUser.getId(),
+            apiUser.getUsername(),
             apiUser.getPassword(),
-            AuthorityUtils.createAuthorityList(apiUser.getSecurityAuthArray())
+            AuthorityUtils.createAuthorityList("ROLE_USER")
         );
     }
 }

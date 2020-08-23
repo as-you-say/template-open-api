@@ -12,22 +12,22 @@ import javax.persistence.*;
 public class ApiUserRequestLog {
     // 기본키
     @Id
-    @Column(name = "id", nullable = false, length = 32, columnDefinition = "API 요청 이력 아이디")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
 
     // 컬럼
-    @Column(name = "ip", nullable = false, length = 15, columnDefinition = "API 요청 아이피")
+    @Column(name = "ip", nullable = false, length = 15)
     private String ip;
 
     @Lob
-    @Column(name = "request", nullable = false, columnDefinition = "API 요청 이력")
+    @Column(name = "request", nullable = false)
     private String request;
 
     @Lob
-    @Column(name = "response", nullable = false, columnDefinition = "API 응답 이력")
+    @Column(name = "response", nullable = false)
     private String response;
 
-    @Column(name = "message", nullable = false, length = 50, columnDefinition = "사용 이력 내용")
+    @Column(name = "message", nullable = false, length = 50)
     private String errorMessage;
 
     // 조인

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import toy.hong.openapi.app.repositories.ApiUserLogRepository;
+import toy.hong.openapi.app.repositories.ApiUserRepository;
 import toy.hong.openapi.model.ApiUser;
 import toy.hong.openapi.model.ApiUserLog;
 import toy.hong.openapi.security.user.ApiSecurityUser;
@@ -17,12 +18,15 @@ import java.util.Date;
 public class ApiSecurityLoginSuccessHandler implements AuthenticationSuccessHandler {
 
     @Autowired
+    ApiUserRepository apiUserRepository;
+
+    @Autowired
     ApiUserLogRepository apiUserLogRepository;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest req, HttpServletResponse res, Authentication authentication) throws IOException, ServletException {
-        ApiUser apiUser = new ApiUser();
-        apiUser.setId(((ApiSecurityUser)authentication.getPrincipal()).getUsername());
+        ApiSecurityUser apiSecurityUser = (ApiSecurityUser)authentication.getPrincipal();
+        ApiUser apiUser = apiUserRepository.findApiUserByUsername(apiSecurityUser.getUsername());
 
         ApiUserLog apiUserLog = new ApiUserLog();
         apiUserLog.setApiUser(apiUser);

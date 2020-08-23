@@ -12,8 +12,8 @@ import javax.persistence.*;
 public class ApiUserAuth {
     // 기본키
     @Id
-    @Column(name = "id", nullable = false, length = 32, columnDefinition = "API 사용자 권한 아이디")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
 
     // 조인
     @ManyToOne

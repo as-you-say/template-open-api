@@ -11,8 +11,8 @@ public class ApiSecurityUserService implements UserDetailsService {
     ApiUserRepository apiUserRepository;
 
     @Override
-    public ApiSecurityUser loadUserByUsername(String id) throws UsernameNotFoundException {
-        return new ApiSecurityUser(apiUserRepository.findOne(id));
+    public ApiSecurityUser loadUserByUsername(String username) throws UsernameNotFoundException {
+        return new ApiSecurityUser(apiUserRepository.findApiUserByUsername(username));
     }
 
 }

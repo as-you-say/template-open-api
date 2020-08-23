@@ -16,34 +16,37 @@ public class ApiUser {
 
     //기본키
     @Id
-    @Column(name = "id", nullable = false, length = 50, columnDefinition = "API 사용자 아이디")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
 
     // 컬럼
-    @Column(name = "password", nullable = false, length = 60, columnDefinition = "API 사용자 비밀번호")
+    @Column(name = "username", nullable = false, length = 60, unique = true)
+    private String username;
+
+    @Column(name = "password", nullable = false, length = 60)
     private String password;
 
-    @Column(name = "purpose", nullable = false, length = 20, columnDefinition = "API 사용목적")
+    @Column(name = "purpose", nullable = false, length = 20)
     private String purpose;
 
-    @Column(name = "create_at", nullable = false, columnDefinition = "등록일")
+    @Column(name = "create_at")
     private Date createAt;
 
-    @Column(name = "update_at", nullable = false, columnDefinition = "수정일")
+    @Column(name = "update_at")
     private Date updateAt;
 
     // 조인
     @OneToMany(mappedBy = "apiUser")
-    private List<ApiUserRequestLog> apiUserRequestLogs = new ArrayList<>();
+    private List<ApiUserRequestLog> apiUserRequestLogs;
 
     @OneToMany(mappedBy = "apiUser")
-    private List<ApiUserLog> apiUserLogs = new ArrayList<>();
+    private List<ApiUserLog> apiUserLogs;
 
     @OneToMany(mappedBy = "apiUser")
-    private List<ApiUserAuth> apiUserAuths = new ArrayList<>();
+    private List<ApiUserAuth> apiUserAuths;
 
     @OneToMany(mappedBy = "apiUser")
-    private List<ApiUseApply> apiUseApplies = new ArrayList<>();
+    private List<ApiUseApply> apiUseApplies;
 
     public String[] getSecurityAuthArray(){
         int authSize = apiUserAuths.size();

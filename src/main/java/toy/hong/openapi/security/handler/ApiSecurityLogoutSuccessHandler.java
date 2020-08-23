@@ -22,7 +22,7 @@ public class ApiSecurityLogoutSuccessHandler implements LogoutSuccessHandler {
     @Override
     public void onLogoutSuccess(HttpServletRequest req, HttpServletResponse res, Authentication authentication) throws IOException, ServletException {
         ApiUser apiUser = new ApiUser();
-        apiUser.setId(((ApiSecurityUser)authentication.getPrincipal()).getUsername());
+        apiUser.setUsername(((ApiSecurityUser)authentication.getPrincipal()).getUsername());
 
         ApiUserLog apiUserLog = new ApiUserLog();
         apiUserLog.setApiUser(apiUser);

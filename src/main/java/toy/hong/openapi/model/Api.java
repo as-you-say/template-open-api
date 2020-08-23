@@ -17,27 +17,27 @@ public class Api {
 
     // 기본키
     @Id
-    @Column(name = "id", nullable = false, length = 32, columnDefinition = "API 아이디")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
 
     // 컬럼
-    @Column(name = "domain", nullable = false, length = 63, columnDefinition = "API 도메인")
+    @Column(name = "domain", nullable = false, length = 63)
     private String domain;
 
-    @Column(name = "name", nullable = false, length = 15, columnDefinition = "API 이름")
+    @Column(name = "name", nullable = false, length = 15)
     private String name;
 
-    @Column(name = "create_at", nullable = false, columnDefinition = "등록일")
+    @Column(name = "create_at", nullable = false)
     private Date createAt;
 
-    @Column(name = "update_at", nullable = false, columnDefinition = "수정일")
+    @Column(name = "update_at", nullable = false)
     private Date updateAt;
 
     // 조인
     @OneToMany(mappedBy = "api")
-    private List<ApiUrl> apiUrls = new ArrayList<>();
+    private List<ApiUrl> apiUrls;
 
     @OneToMany(mappedBy = "api")
-    private List<ApiUseHistory> apiUseHistories = new ArrayList<>();
+    private List<ApiUseHistory> apiUseHistories;
 
 }
