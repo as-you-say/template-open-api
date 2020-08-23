@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class ApiUserAuth {
     // 기본키
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     // 조인
