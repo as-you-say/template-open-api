@@ -50,6 +50,6 @@ public class UserValidationService {
         validate("Purpose", apiUser.getPurpose(), REGEX_USER_PURPOSE);
     }
 
-    
+
 
 }

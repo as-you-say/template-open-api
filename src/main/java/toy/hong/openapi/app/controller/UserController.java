@@ -9,6 +9,7 @@ import toy.hong.openapi.app.Response;
 import toy.hong.openapi.app.repositories.ApiAuthRepository;
 import toy.hong.openapi.app.repositories.ApiUserAuthRepository;
 import toy.hong.openapi.app.repositories.ApiUserRepository;
+import toy.hong.openapi.app.service.UserService;
 import toy.hong.openapi.model.ApiAuth;
 import toy.hong.openapi.model.ApiUser;
 import toy.hong.openapi.model.ApiUserAuth;
@@ -17,33 +18,12 @@ import toy.hong.openapi.model.ApiUserAuth;
 public class UserController {
 
     @Autowired
-    ApiUserRepository apiUserRepository;
-
-    @Autowired
-    ApiAuthRepository apiAuthRepository;
-
-    @Autowired
-    ApiUserAuthRepository apiUserAuthRepository;
+    UserService userService;
 
     // 회원가입
-    @PostMapping("/signup")
-    public ResponseEntity<Response> signup(ApiUser apiUser){
-        String encryptPassword = new BCryptPasswordEncoder().encode(apiUser.getPassword());
-        apiUser.setPassword(encryptPassword);
-
-        ApiAuth apiAuth = apiAuthRepository.findByName("ROLE_USER");
-        boolean isNotFoundAuth = (apiAuth == null);
-        if (isNotFoundAuth) {
-            ApiAuth authData = new ApiAuth();
-            authData.setName("ROLE_USER");
-            apiAuth = apiAuthRepository.save(authData);
-        }
-
-        ApiUserAuth apiUserAuth = new ApiUserAuth();
-        apiUserAuth.setApiAuth(apiAuth);
-        apiUserAuth.setApiUser(apiUserRepository.save(apiUser));
-        apiUserAuthRepository.save(apiUserAuth);
-
+    @PostMapping("/signUp")
+    public ResponseEntity<Response> signUp(ApiUser apiUser){
+        userService.signUp(apiUser);
         return new ResponseEntity<>(new Response(
                 201,
                 "성공"
