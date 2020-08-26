@@ -3,6 +3,7 @@ package toy.hong.openapi.model;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import toy.hong.openapi.model.common.Page;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.List;
 @Table(name = "api")
 @Getter
 @Setter
-public class Api {
+public class Api extends Page {
 
     // 기본키
     @Id

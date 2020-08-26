@@ -2,6 +2,7 @@ package toy.hong.openapi.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import toy.hong.openapi.model.common.Page;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,7 +11,7 @@ import java.util.Date;
 @Table(name = "api_user_log")
 @Getter
 @Setter
-public class ApiUserLog {
+public class ApiUserLog  extends Page {
     // 기본키
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

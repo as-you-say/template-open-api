@@ -18,9 +18,9 @@ public class HomeController {
     }
 
     // 로그인
-    @GetMapping("/signup")
+    @GetMapping("/signUp")
     public String goSignUp(){
-        return "signup";
+        return "signUp";
     }
 
 }

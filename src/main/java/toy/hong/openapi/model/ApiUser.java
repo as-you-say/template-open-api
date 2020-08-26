@@ -2,6 +2,7 @@ package toy.hong.openapi.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import toy.hong.openapi.model.common.Page;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
 @Table(name = "api_user")
 @Getter
 @Setter
-public class ApiUser {
+public class ApiUser extends Page {
 
     //기본키
     @Id
@@ -25,6 +26,8 @@ public class ApiUser {
 
     @Column(name = "password", nullable = false, length = 60)
     private String password;
+
+    private String password_confirm;
 
     @Column(name = "purpose", nullable = false, length = 20)
     private String purpose;

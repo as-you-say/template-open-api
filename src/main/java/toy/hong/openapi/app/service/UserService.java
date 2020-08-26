@@ -25,9 +25,14 @@ public class UserService extends UserValidationService {
 
     @Transactional
     public void signUp(ApiUser apiUser){
+        // 밸리데이션 체크
+        validateSignUp(apiUser);
+
+        // 패스워드 인코딩
         String encryptPassword = new BCryptPasswordEncoder().encode(apiUser.getPassword());
         apiUser.setPassword(encryptPassword);
 
+        // 권한 없을시 생성
         ApiAuth apiAuth = apiAuthRepository.findByName("ROLE_USER");
         boolean isNotFoundAuth = (apiAuth == null);
         if (isNotFoundAuth) {
@@ -36,6 +41,7 @@ public class UserService extends UserValidationService {
             apiAuth = apiAuthRepository.save(authData);
         }
 
+        // 회원가입
         ApiUserAuth apiUserAuth = new ApiUserAuth();
         apiUserAuth.setApiAuth(apiAuth);
         apiUserAuth.setApiUser(apiUserRepository.save(apiUser));

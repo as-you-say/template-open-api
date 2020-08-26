@@ -1,4 +1,77 @@
 package toy.hong.openapi.app.service.validation;
 
+import toy.hong.openapi.app.exception.RequestParamValidationException;
+import toy.hong.openapi.model.ApiUseApply;
+import toy.hong.openapi.model.ApiUseHistory;
+
+import java.util.regex.Pattern;
+
 public class ApiUserValidationService {
+    /*  비밀번호 정책
+        ^                 # start-of-string
+        (?=.*[0-9])       # a digit must occur at least once
+        (?=.*[a-z])       # a lower case letter must occur at least once
+        (?=.*[A-Z])       # an upper case letter must occur at least once
+        (?=.*[@#$%^&+=])  # a special character must occur at least once
+        (?=\S+$)          # no whitespace allowed in the entire string
+        .{8,}             # anything, at least eight places though
+        $                 # end-of-string
+    */
+    private final String REGEX_USER_ID = "^[a-zA-Z0-9_]*$";
+    private final String REGEX_USER_PASSWORD = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\\!@#$%^&+=])(?=\\S+$).{8,}$";
+    private final String REGEX_USER_PURPOSE = "^[a-zA-Z가-힣]*$";
+    private final String REGEX_USER_NAME = "^[a-zA-Z가-힣]*$";
+    private final String REGEX_USER_DEPART = "^[a-zA-Z가-힣]*$";
+    private final String REGEX_USER_PHONE = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$";
+    private final String REGEX_USER_EMAIL = "^[_a-zA-Z0-9-\\.]+@[\\.a-zA-Z0-9-]+\\.[a-zA-Z]+$";
+    private final String REGEX_USER_CLOUD_TYPE = "^[1|2]{1}$";
+    private final String REGEX_USER_STORAGE_USE_YN = "^[Y|N]{1}$";
+
+    private final String REGEX_APPLY_PROJECT_NAME = "^[a-zA-Z가-힣]*$";
+    private final String REGEX_APPLY_USE_IP = "^[a-zA-Z가-힣]*$";
+
+    private void validate(String name, Object param){
+        boolean isEmpty = false;
+        if(param instanceof String) {
+            isEmpty = "".equals((String)param);
+        }
+        if (param == null || isEmpty) {
+            throw new RequestParamValidationException(name + " - 값이 NULL 입니다.");
+        }
+    }
+
+    private void validate(String name, Object param, String regex){
+        validate(name, param);
+        String paramString = "" + param;
+        if(!Pattern.matches(regex, paramString)){
+            throw new RequestParamValidationException(name + " - 값이 형식에 맞지 않습니다." + param);
+        }
+    }
+
+    private void validate(String name, Object param, boolean isNotValid){
+        validate(name, param);
+        if(isNotValid){
+            throw new RequestParamValidationException(name + " - 값이 형식에 맞지 않습니다." + param);
+        }
+    }
+
+    public void validateApplyAPIUser(ApiUseApply apiUseApply){
+        validate("Project Name", apiUseApply.getProjectName(), REGEX_APPLY_PROJECT_NAME);
+        validate("IP", apiUseApply.getIp(), REGEX_APPLY_USE_IP);
+    }
+
+    public void validateGetAPIUseApplyList(ApiUseApply apiUseApply){
+        validate("PageNo", apiUseApply.getPageNo(), apiUseApply.getPageNo()<1);
+        validate("PageSize", apiUseApply.getPageSize(), apiUseApply.getPageSize()<1);
+    }
+
+    public void validateApproveAPIUserApply(ApiUseApply apiUseApply){
+        validate("Id", apiUseApply.getId());
+    }
+
+    public void validateGetAPIUseHistory(ApiUseHistory apiUseHistory){
+        validate("PageNo", apiUseHistory.getPageNo(), apiUseHistory.getPageNo()<1);
+        validate("PageSize", apiUseHistory.getPageSize(), apiUseHistory.getPageSize()<1);
+    }
+
 }

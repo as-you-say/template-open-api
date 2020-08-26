@@ -2,6 +2,7 @@ package toy.hong.openapi.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import toy.hong.openapi.model.common.Page;
 
 import javax.persistence.*;
 
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Table(name = "api_user_request_log")
 @Getter
 @Setter
-public class ApiUserRequestLog {
+public class ApiUserRequestLog extends Page {
     // 기본키
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
