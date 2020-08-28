@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Page extends Search{
-    private int pageNo = 1;
-    private int pageSize = 10;
+public class Search {
+    private int type = 0;
+    private String keyword;
 }
