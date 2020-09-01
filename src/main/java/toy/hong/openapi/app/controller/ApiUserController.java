@@ -52,7 +52,7 @@ public class ApiUserController {
 
     // OPEN API 신청 승인
     @PutMapping("/manage/openapi/apply")
-    public ResponseEntity<Response> approveAPIUserApply(ApiUseApply apiUseApply){
+    public ResponseEntity<Response> approveAPIUseApply(ApiUseApply apiUseApply){
         apiUserService.approveAPIUserApply(apiUseApply);
         return new ResponseEntity<>(new Response(
                 200,

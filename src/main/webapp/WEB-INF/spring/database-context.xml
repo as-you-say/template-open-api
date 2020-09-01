@@ -8,12 +8,14 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
+    <context:property-placeholder location="classpath*:db.properties"/>
+
     <!-- 데이터베이스 접속정보 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-          p:driverClassName="org.mariadb.jdbc.Driver"
-          p:url="jdbc:mariadb://192.168.136.140:3306/test"
-          p:username="test"
-          p:password="test" />
+          p:driverClassName="${db.driverClassName}"
+          p:url="${db.url}"
+          p:username="${db.username}"
+          p:password="${db.password}"/>
 
     <!-- Spring Data JPA 환경설정 -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
