@@ -5,8 +5,12 @@ import toy.hong.openapi.model.ApiUseHistory;
 
 public class ApiUserValidationService extends ValidationService {
 
-    private final String REGEX_APPLY_PROJECT_NAME = "^[a-zA-Z가-힣]*$";
-    private final String REGEX_APPLY_USE_IP = "^[a-zA-Z가-힣]*$";
+    /*
+    * REGEX_APPLY_PROJECT_NAME : 한글/영문, 1글자 이상
+    * REGEX_APPLY_USE_IP : 영문/특수문자(.), 7글자 이상
+    * */
+    private final String REGEX_APPLY_PROJECT_NAME = "^[a-zA-Z가-힣]{1,}$";
+    private final String REGEX_APPLY_USE_IP = "^[a-zA-Z.]{7,}$";
 
     public void validateApplyAPIUser(ApiUseApply apiUseApply){
         validate("Project Name", apiUseApply.getProjectName(), REGEX_APPLY_PROJECT_NAME);
